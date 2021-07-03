@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                   primary: Colors.orange,
                 ),
                 onPressed: () {
-                  launchUssd("*167*7*1*0153#");
+                  launchUssd("*167*7*1*####");
                 },
                 label: Text('Balance'),
                 icon: Icon(

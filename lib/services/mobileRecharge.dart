@@ -17,7 +17,6 @@ class _MobileRechargeState extends State<MobileRecharge> {
   Future<void> launchUssd() async {
     Ussd.runUssd(
         "*167*3*3*1*${useNumber.text}*${useAmount.text}*${usePin.text}#");
-    print("*167*3*3*1*${useNumber.text}*${useAmount.text}*${usePin.text}#");
   }
 
   @override
