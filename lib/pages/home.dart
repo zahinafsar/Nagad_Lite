@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:ussd/ussd.dart';
 
-class Home extends StatelessWidget {
-  Future<void> launchUssd(String ussdCode) async {
-    Ussd.runUssd(ussdCode);
-  }
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<String> routes = ["/", "/settings"];
 
   @override
   Widget build(BuildContext context) {
     changeLocation(String path) {
       Navigator.pushNamed(context, path);
+    }
+
+    Future<void> launchUssd(String ussdCode) async {
+      Ussd.runUssd(ussdCode);
     }
 
     return MaterialApp(

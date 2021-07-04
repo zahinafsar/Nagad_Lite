@@ -29,6 +29,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   ussd: ^0.0.2+1
   ussd_service: ^0.1.0+4
+  shared_preferences: ^2.0.6
   # permission_handler: ^8.1.2
   # sim_data: ^0.0.1+2
 

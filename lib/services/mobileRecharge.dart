@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'package:ussd/ussd.dart';
 
@@ -17,6 +18,8 @@ class _MobileRechargeState extends State<MobileRecharge> {
   Future<void> launchUssd() async {
     Ussd.runUssd(
         "*167*3*3*1*${useNumber.text}*${useAmount.text}*${usePin.text}#");
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // print(prefs.getInt('pin'));
   }
 
   @override
