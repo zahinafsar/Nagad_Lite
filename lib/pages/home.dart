@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'package:ussd/ussd.dart';
 
@@ -18,6 +19,12 @@ class _HomeState extends State<Home> {
 
     Future<void> launchUssd(String ussdCode) async {
       Ussd.runUssd(ussdCode);
+    }
+
+    void checkBalance() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? pin = prefs.getString('counter');
+      launchUssd("*167*7*1*$pin#");
     }
 
     return MaterialApp(
@@ -45,7 +52,7 @@ class _HomeState extends State<Home> {
                   primary: Colors.orange,
                 ),
                 onPressed: () {
-                  launchUssd("*167*7*1*####");
+                  checkBalance();
                 },
                 label: Text('Balance'),
                 icon: Icon(
@@ -73,7 +80,7 @@ class _HomeState extends State<Home> {
                   ServiceCard(
                     title: 'Send Money',
                     goTo: () {
-                      changeLocation('/mobileRecharge');
+                      changeLocation('/sendMoney');
                     },
                     icon: Icons.cloud_upload_outlined,
                   ),
@@ -85,14 +92,14 @@ class _HomeState extends State<Home> {
                   ServiceCard(
                     title: 'Add Money',
                     goTo: () {
-                      changeLocation('/mobileRecharge');
+                      changeLocation('/');
                     },
                     icon: Icons.add_to_home_screen_rounded,
                   ),
                   ServiceCard(
                     title: 'Pay Bill',
                     goTo: () {
-                      changeLocation('/mobileRecharge');
+                      changeLocation('/');
                     },
                     icon: Icons.local_shipping_rounded,
                   ),
@@ -104,14 +111,14 @@ class _HomeState extends State<Home> {
                   ServiceCard(
                     title: 'Donation',
                     goTo: () {
-                      changeLocation('/mobileRecharge');
+                      changeLocation('/');
                     },
                     icon: Icons.health_and_safety_sharp,
                   ),
                   ServiceCard(
                     title: 'Income Tex',
                     goTo: () {
-                      changeLocation('/mobileRecharge');
+                      changeLocation('/');
                     },
                     icon: Icons.queue_play_next_outlined,
                   )
@@ -123,14 +130,14 @@ class _HomeState extends State<Home> {
                   ServiceCard(
                     title: 'Cash Out',
                     goTo: () {
-                      changeLocation('/mobileRecharge');
+                      changeLocation('/');
                     },
                     icon: Icons.send_to_mobile_outlined,
                   ),
                   ServiceCard(
                     title: 'Merchant pay',
                     goTo: () {
-                      changeLocation('/mobileRecharge');
+                      changeLocation('/');
                     },
                     icon: Icons.swap_horizontal_circle_sharp,
                   ),

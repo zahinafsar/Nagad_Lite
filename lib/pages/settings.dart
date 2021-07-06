@@ -10,9 +10,11 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   final pin = TextEditingController();
-  void setPin(String pin) async {
+
+  void setPin(String pinNumber) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('counter', pin);
+    await prefs.setString('counter', pinNumber);
+    pin.clear();
   }
 
   @override
@@ -39,6 +41,9 @@ class _SettingsState extends State<Settings> {
               onPressed: () {
                 setPin(pin.text);
               },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.orange,
+              ),
               child: Text("Save"),
             ),
           ],
