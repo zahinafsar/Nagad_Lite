@@ -38,12 +38,12 @@ class _HomeState extends State<Home> {
           //   ),
           // ),
           title: Image(
-            image: AssetImage('assets/nagad_logo.png'),
+            image: AssetImage('assets/nagad_lite.png'),
             height: 50,
           ),
           // centerTitle: true,
           toolbarHeight: 80,
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.red,
           actions: <Widget>[
             Container(
               margin: EdgeInsets.all(24),
@@ -95,11 +95,12 @@ class _HomeState extends State<Home> {
                       changeLocation('/');
                     },
                     icon: Icons.add_to_home_screen_rounded,
+                    available: false,
                   ),
                   ServiceCard(
                     title: 'Pay Bill',
                     goTo: () {
-                      changeLocation('/');
+                      changeLocation('/payBill');
                     },
                     icon: Icons.local_shipping_rounded,
                   ),
@@ -114,6 +115,7 @@ class _HomeState extends State<Home> {
                       changeLocation('/');
                     },
                     icon: Icons.health_and_safety_sharp,
+                    available: false,
                   ),
                   ServiceCard(
                     title: 'Income Tex',
@@ -121,6 +123,7 @@ class _HomeState extends State<Home> {
                       changeLocation('/');
                     },
                     icon: Icons.queue_play_next_outlined,
+                    available: false,
                   )
                 ],
               ),
@@ -130,7 +133,7 @@ class _HomeState extends State<Home> {
                   ServiceCard(
                     title: 'Cash Out',
                     goTo: () {
-                      changeLocation('/');
+                      changeLocation('/cashOut');
                     },
                     icon: Icons.send_to_mobile_outlined,
                   ),
@@ -140,6 +143,7 @@ class _HomeState extends State<Home> {
                       changeLocation('/');
                     },
                     icon: Icons.swap_horizontal_circle_sharp,
+                    available: false,
                   ),
                 ],
               ),
@@ -155,7 +159,12 @@ class ServiceCard extends StatelessWidget {
   final String title;
   final Function goTo;
   final IconData icon;
-  ServiceCard({required this.title, required this.icon, required this.goTo});
+  final bool available;
+  ServiceCard(
+      {required this.title,
+      required this.icon,
+      required this.goTo,
+      this.available = true});
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -166,19 +175,19 @@ class ServiceCard extends StatelessWidget {
             goTo();
           },
           style: ElevatedButton.styleFrom(
-            primary: Colors.red[600],
+            primary: available ? Colors.red[600] : Colors.grey[400],
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+            padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: EdgeInsets.only(bottom: 10),
                   child: Icon(
                     icon,
                     color: Colors.white,
-                    size: 40,
+                    size: 30,
                   ),
                 ),
                 Text(

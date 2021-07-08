@@ -27,15 +27,18 @@ class _SettingsState extends State<Settings> {
       body: Container(
         margin: EdgeInsets.all(20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextField(
-              controller: pin,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Number",
+            Container(
+              child: TextField(
+                controller: pin,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Set Pin",
+                ),
+                obscureText: true,
               ),
-              obscureText: true,
             ),
             ElevatedButton(
               onPressed: () {
@@ -43,6 +46,7 @@ class _SettingsState extends State<Settings> {
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.orange,
+                minimumSize: Size(double.infinity, 40),
               ),
               child: Text("Save"),
             ),

@@ -3,22 +3,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'package:ussd/ussd.dart';
 
-class SendMoney extends StatefulWidget {
-  const SendMoney({Key? key}) : super(key: key);
+class MobileRecharge extends StatefulWidget {
+  const MobileRecharge({Key? key}) : super(key: key);
 
   @override
-  _SendMoneyState createState() => _SendMoneyState();
+  _MobileRechargeState createState() => _MobileRechargeState();
 }
 
-class _SendMoneyState extends State<SendMoney> {
+class _MobileRechargeState extends State<MobileRecharge> {
   final useNumber = new TextEditingController();
   final useAmount = new TextEditingController();
-  final useRef = new TextEditingController();
   final usePin = new TextEditingController();
 
   Future<void> launchUssd() async {
     Ussd.runUssd(
-        "*167*2*${useNumber.text}*${useAmount.text}*${useRef.text}*${usePin.text}#");
+        "*167*3*3*1*${useNumber.text}*${useAmount.text}*${usePin.text}#");
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     // print(prefs.getInt('pin'));
   }
@@ -28,7 +27,7 @@ class _SendMoneyState extends State<SendMoney> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text("SendMoney"),
+        title: Text("Mobile Recharge"),
         centerTitle: true,
       ),
       body: Container(
@@ -52,16 +51,6 @@ class _SendMoneyState extends State<SendMoney> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: "Amount",
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextField(
-              controller: useRef,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Reference",
               ),
             ),
             SizedBox(
