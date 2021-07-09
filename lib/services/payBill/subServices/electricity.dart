@@ -15,10 +15,57 @@ class _ElectricityState extends State<Electricity> {
   final usePin = new TextEditingController();
 
   Future<void> launchUssd() async {
-    // Ussd.runUssd(
-    //   "*167*5*1*1*${useNumber.text}*${cardNo.text}*${useAmount.text}*${usePin.text}#"
-    // );
+    Ussd.runUssd(
+        "*167*5*1*${type.indexOf(typeValue) + 1}*${cardNo.text}*${genMonth(month.indexOf(monthValue))}$yearValue*${useAmount.text}*${usePin.text}#");
   }
+
+  String genMonth(int data) {
+    if ((data + 1).toString().length == 1) {
+      return '0' + (data + 1).toString();
+    } else {
+      return (data + 1).toString();
+    }
+  }
+
+  String typeValue = 'DPDC';
+  var type = [
+    'DPDC',
+    'NESCO Post',
+    'NESCO Pre',
+    'DESCO Post',
+    'WZPDC',
+    'DESCO Pre',
+  ];
+
+  String monthValue = 'January';
+  var month = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+
+  String yearValue = '2021';
+  var year = [
+    '2021',
+    '2022',
+    '2023',
+    '2024',
+    '2025',
+    '2026',
+    '2027',
+    '2028',
+    '2029',
+    '2030',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +85,78 @@ class _ElectricityState extends State<Electricity> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: "Card Number",
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            InputDecorator(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(13, 6, 13, 6),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: typeValue,
+                  items: type.map((String items) {
+                    return DropdownMenuItem(value: items, child: Text(items));
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      typeValue = value!;
+                    });
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            InputDecorator(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(13, 6, 13, 6),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: monthValue,
+                  items: month.map((String items) {
+                    return DropdownMenuItem(value: items, child: Text(items));
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      monthValue = value!;
+                    });
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            InputDecorator(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(13, 6, 13, 6),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: yearValue,
+                  items: year.map((String items) {
+                    return DropdownMenuItem(value: items, child: Text(items));
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      yearValue = value!;
+                    });
+                  },
+                ),
               ),
             ),
             SizedBox(
